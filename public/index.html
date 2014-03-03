@@ -27,38 +27,31 @@
         url: "http://127.0.0.1:3000/api/swagger/resources",
         dom_id: "swagger-ui-container",
         supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
-        onComplete: function(swaggerApi, swaggerUi){
-          if(typeof initOAuth == "function")
+        onComplete: function(swaggerApi, swaggerUi) {
+          if (typeof initOAuth == "function") {
             initOAuth();
+          }
         },
         onFailure: function(data) {
-          if(console) {
+          if (console) {
             console.log("Unable to Load SwaggerUI");
           }
         },
         docExpansion: "none"
-      }
-    );
+      });
 
-    $('#input_apiKey').change(function() {
-      clientId = $('#input_apiKey')[0].value;
-      console.log(clientId);
-    })
-    window.swaggerUi.load();
-  });
+      window.swaggerUi.load();
+    });
   </script>
 </head>
 <body>
-<div id='header'>
-  <div class="swagger-ui-wrap">
-    <a id="logo">StrongLoop API Explorer</a>
-    <form id='api_selector'>
-      <div class='input'><label>Client id: <input placeholder="52fcbb09ffe28ff954090d94" id="input_id" type="text"/></label></div>
-    </form>
+  <div id='header'>
+    <div class="swagger-ui-wrap">
+      <a id="logo">StrongLoop API Explorer</a>
+    </div>
   </div>
-</div>
-<div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
-<div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+  <div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
+  <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
 </body>
 
 </html>
