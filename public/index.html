@@ -22,12 +22,20 @@
   <script type="text/javascript">
     var clientId = "52fcbb09ffe28ff954090d94";
 
-    $(function () {
+    $(function() {
+      $.getJSON('config.json', function(config) {
+        console.log(config);
+        loadSwaggerUi(config);
+      });
+    });
+
+    function loadSwaggerUi(config) {
       window.swaggerUi = new SwaggerUi({
-        url: "http://127.0.0.1:3000/api/swagger/resources",
+        url: config.discoveryUrl || "/swagger/resources",
         dom_id: "swagger-ui-container",
         supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
         onComplete: function(swaggerApi, swaggerUi) {
+          $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
           if (typeof initOAuth == "function") {
             initOAuth();
           }
@@ -41,7 +49,7 @@
       });
 
       window.swaggerUi.load();
-    });
+    };
   </script>
 </head>
 <body>
